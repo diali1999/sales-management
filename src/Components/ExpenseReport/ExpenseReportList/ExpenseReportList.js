@@ -42,7 +42,7 @@ function ExpenseReportList() {
     if(!isBusy){
         return (
         <div>
-            <h2>Report List</h2>
+            <h2>Expense Report List</h2>
             <Table striped bordered hover>
         <thead>
             <tr>

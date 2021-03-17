@@ -13,7 +13,7 @@ async function createUser(credentials){
     .then(data => data.json())
 }
 
-function EmployeeForm() {
+function EmployeeForm({user}) {
     const handleSubmit = async e => {
         e.preventDefault();
         const userCreated = await createUser({
