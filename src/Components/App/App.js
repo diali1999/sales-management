@@ -7,6 +7,8 @@ import EmployeeForm from '../Employee/EmployeeForm/EmployeeForm';
 import EmployeeList from '../Employee/EmployeeList/EmployeeList';
 import ExpenseReportList from '../ExpenseReport/ExpenseReportList/ExpenseReportList';
 import ExpenseReportForm from '../ExpenseReport/ExpenseReportForm/ExpenseReportForm';
+import WorkingReportForm from '../WorkingReport/WorkingReportForm/WorkingReportForm';
+import WorkingReportList from '../WorkingReport/WorkingReportList/WorkingReportList';
 import QRUpload from '../QR/QRUpload';
 import QRDisplay from '../QR/QRDisplay';
 import Login from '../Login/Login';
@@ -23,12 +25,14 @@ function App() {
   return (
     <div className="wrapper">
       <h1>Sales Management</h1>
-      {/* <ExpenseReportForm /> */}
+      <ExpenseReportForm />
       {/* <EmployeeForm /> */}
       {/* <EmployeeList /> */}
-      {/* <ExpenseReportList /> */}
-      <QRUpload />
-      <QRDisplay />
+      <ExpenseReportList />
+      {/* <QRUpload /> */}
+      {/* <QRDisplay /> */}
+      {/* <WorkingReportForm /> */}
+      {/* <WorkingReportList /> */}
       <BrowserRouter>
         <Switch>
           <Route path="/dashboard">

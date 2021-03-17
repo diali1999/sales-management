@@ -4,11 +4,11 @@ import {Table, Spinner, Button} from 'react-bootstrap';
 
 
 
-function ExpenseReportList() {
-    const [expenseReports, setExpenseReports] = useState([]);
+function WorkingReportList() {
+    const [workingReports, setWorkingReports] = useState([]);
     const [isBusy, setBusy] = useState(true);
-    async function getExpenseReport(){
-        return fetch('http://localhost:5000/api/expense_report',{
+    async function getWorkingReport(){
+        return fetch('http://localhost:5000/api/working_report',{
             method:'GET',
             headers:{
                 'authorization': `Bearer ${JSON.parse(sessionStorage.getItem('auth-token'))?.token}`,
@@ -20,7 +20,7 @@ function ExpenseReportList() {
         e.preventDefault();
         const reportId = e.target.getAttribute('id');
         console.log(reportId);
-        const statusChange = await fetch(`http://localhost:5000/api/expense_report/status`, {
+        const statusChange = await fetch(`http://localhost:5000/api/working_report/status`, {
             method: 'POST',
             headers:{
                 'authorization': `Bearer ${JSON.parse(sessionStorage.getItem('auth-token'))?.token}`,
@@ -28,47 +28,46 @@ function ExpenseReportList() {
             },
             body:JSON.stringify({id: reportId})
         });
-        getExpenseReport().then(data=>{
-            setExpenseReports(data);
+        getWorkingReport().then(data=>{
+            setWorkingReports(data);
         });
     }
     useEffect(() => {
-        getExpenseReport()
+        getWorkingReport()
         .then(data=>{
-            setExpenseReports(data);
+            setWorkingReports(data);
             setBusy(false);
         })
     }, []);
     if(!isBusy){
         return (
         <div>
-            <h2>Expense Report List</h2>
+            <h2>Working Report List</h2>
             <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>Report Id</th>
                     <th>Employee Id</th>
-                    <th>Type</th>
-                    <th>Expense</th>
+                    <th>Destination</th>
+                    <th>Remarks</th>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Remarks</th>
+                    <th>Location</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-            {expenseReports.map(expenseReport=>{
-                console.log(expenseReport);
+            {workingReports.map(workingReport=>{
                 return(
-                    <tr key={`${expenseReport.id}`}>
-                        <td>{expenseReport.id}</td>
-                        <td>{expenseReport.user_id}</td>
-                        <td>{expenseReport.type}</td>
-                        <td>{expenseReport.expense}</td>
-                        <td>{expenseReport.date}</td>
-                        <td>{expenseReport.status}</td>
-                        <td>{expenseReport.remarks}</td>
-                        <td id={`${expenseReport.id}`}><Button id={`${expenseReport.id}`} variant="danger" onClick={changeStatus}>Change Status</Button></td>
+                    <tr key={`${workingReport.id}`}>
+                        <td>{workingReport.id}</td>
+                        <td>{workingReport.user_id}</td>
+                        <td>{workingReport.destination}</td>
+                        <td>{workingReport.remarks}</td>
+                        <td>{workingReport.date}</td>
+                        <td>{workingReport.status}</td>
+                    <td><a target="_blank" rel="noreferrer" href={`https://maps.google.com/?q=${workingReport.latitude},${workingReport.longitude}`}>View Location</a></td>
+                        <td id={`${workingReport.id}`}><Button id={`${workingReport.id}`} variant="danger" onClick={changeStatus}>Change Status</Button></td>
                     </tr>
                 )
             })}
@@ -87,4 +86,4 @@ function ExpenseReportList() {
     }
 }
 
-export default ExpenseReportList;
+export default WorkingReportList;
