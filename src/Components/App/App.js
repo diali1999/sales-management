@@ -27,43 +27,42 @@ function App() {
   }
   return (
     <div className="wrapper">
-      {/* <h1>Sales Management</h1> */}
-      {/* <ExpenseReportForm /> */}
-      {/* <OrderForm /> */}
-      {/* <Dashboard setAuthToken={setAuthToken} setUser={setUser}/> */}
       <Navbar setAuthToken={setAuthToken} setUser={setUser} user={user}/>
       <BrowserRouter>
         <Switch>
           <Route path="/home">
             <Navbar />
           </Route>
-          <Route path="/users/add">
+          {user=="Admin" && <Route path="/users/add">
             <EmployeeForm />
-          </Route>
+          </Route>}
+          
           <Route path="/users">
             <EmployeeList />
           </Route>
-          <Route path="/orders/add">
+          {user=="User"&& <Route path="/orders/add">
             <OrderForm />
-          </Route>
+          </Route>}
           <Route path="/orders">
             <OrderList />
           </Route>
-          <Route path="/expense_report/add">
+          {user=="User" && <Route path="/expense_report/add">
             <ExpenseReportForm />
-          </Route>
+          </Route>}
           <Route path="/expense_report">
             <ExpenseReportList />
           </Route>
-          <Route path="/work_report/add">
+          {user=="User" && <Route path="/work_report/add">
             <WorkingReportForm />
           </Route>
+          }
           <Route path="/work_report">
             <WorkingReportList />
           </Route>
-          <Route path="/QR_Code/add">
+          {user=="Admin" && <Route path="/QR_Code/add">
             < QRUpload />
-          </Route>
+          </Route>}
+          
           <Route path="/QR_Code">
             <QRDisplay  />
           </Route>

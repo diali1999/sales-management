@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { AnyButton } from "../AnyButton";
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
+import { Redirect } from 'react-router-dom';
+import {useState} from 'react';
 
 function Navbar({setAuthToken, setUser, user}) {
      const state = { clicked: false }
-
+    const [loggedOut, setLoggedOut] = useState(false);
     const logout = () => {
         sessionStorage.clear('token');
         sessionStorage.clear('user');
         setAuthToken('');
         setUser('');
+        setLoggedOut(true); 
     }
-
+    if(loggedOut) {return <Redirect to="/" push ={true} />}
         return(
             <nav className="NavbarItems">
                 <h1 className="menu-icon">Sales Management</h1>
