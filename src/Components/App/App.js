@@ -4,9 +4,11 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import EmployeeForm from '../Employee/EmployeeForm/EmployeeForm';
+import EmployeeList from '../Employee/EmployeeList/EmployeeList';
+import UpdateEmployee from '../Employee/UpdateEmployee/UpdateEmployee';
 import OrderForm from '../Order/OrderForm/OrderForm';
 import OrderList from '../Order/OrderList/OrderList';
-import EmployeeList from '../Employee/EmployeeList/EmployeeList';
+
 import ExpenseReportList from '../ExpenseReport/ExpenseReportList/ExpenseReportList';
 import ExpenseReportForm from '../ExpenseReport/ExpenseReportForm/ExpenseReportForm';
 import WorkingReportForm from '../WorkingReport/WorkingReportForm/WorkingReportForm';
@@ -36,7 +38,9 @@ function App() {
           {user=="Admin" && <Route path="/users/add">
             <EmployeeForm />
           </Route>}
-          
+          {user=="Admin" && <Route path="/users/update/:userId">
+            <UpdateEmployee/>
+          </Route>}
           <Route path="/users">
             <EmployeeList />
           </Route>

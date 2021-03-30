@@ -2,16 +2,23 @@ import React, {useEffect, useState} from 'react'
 import {Table, Spinner, Button} from 'react-bootstrap';
 import EmployeeForm from '../EmployeeForm/EmployeeForm';
 // import Cookies from 'js-cookie';
-
+import UpdateEmployee from '../UpdateEmployee/UpdateEmployee';
 
 
 function EmployeeList() {
     const [users, setUsers] = useState([]);
     const [isBusy, setBusy] = useState(true);
+    const [edit, setEdit] = useState(false);
+    const [updatedUser, setUpdatedUser] = useState({});
+    async function updateUser(e){
+        e.preventDefault();
+        const userId = e.target.getAttribute('id');
+        setUpdatedUser(users.filter(user => user.id==userId)[0]);
+        setEdit(true);
+    }
     async function deleteUser(e){
         e.preventDefault();
         const userId = e.target.getAttribute('id');
-        console.log(userId);
         const deletedUser = await fetch(`http://localhost:5000/api/users/${userId}`, {
             method: 'DELETE',
             headers:{
@@ -38,6 +45,9 @@ function EmployeeList() {
             setBusy(false);
         })
     }, []);
+    if(edit){
+        return(<UpdateEmployee user={updatedUser} setEdit={setEdit}/>)
+    }
     if(!isBusy){
         return (
         <div>
@@ -56,6 +66,7 @@ function EmployeeList() {
                 <th>Role</th>
                 <th>Department</th>
                 <th>DOJ</th>
+                <th>Edit</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -75,6 +86,7 @@ function EmployeeList() {
                         <td>{user.role}</td>
                         <td>{user.department}</td>
                         <td>{user.DOJ}</td>
+                        <td><Button id={`${user.id}`} variant="primary" onClick={updateUser}>Edit</Button></td>
                         <td id={`${user.id}`}><Button id={`${user.id}`} variant="danger" onClick={deleteUser}>Delete</Button></td>
                     </tr>
                 )

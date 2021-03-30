@@ -1,19 +1,23 @@
 import {Form, Button} from 'react-bootstrap';
 import {useState} from 'react';
 
-async function createUser(credentials){
-    return fetch('http://localhost:5000/api/users', {
-        method: 'POST',
-        headers: {
-            'authorization': `Bearer ${JSON.parse(sessionStorage.getItem('auth-token'))?.token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-    .then(data => data.json())
-}
 
-function EmployeeForm() {
+
+function UpdateEmployee({user, setEdit}) {
+    async function createUser(credentials){
+        return fetch('http://localhost:5000/api/users/'+`${user.id}`, {
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${JSON.parse(sessionStorage.getItem('auth-token'))?.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        })
+        .then(data => {
+            setEdit(false);
+            data.json()
+        })
+    }
     const handleSubmit = async e => {
         e.preventDefault();
         const userCreated = await createUser({
@@ -29,7 +33,6 @@ function EmployeeForm() {
             salary,
             password
         });
-        console.log(userCreated);
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -43,20 +46,20 @@ function EmployeeForm() {
         setDOB("");
     }
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [gender, setGender] = useState("");
-    const [salary, setSalary] = useState("");
-    const [role, setRole] = useState("");
-    const [department, setDepartment] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [password, setPassword] = useState("");
-    const [DOB, setDOB] = useState("");
-    const [DOJ, setDOJ] = useState("");
+    const [firstName, setFirstName] = useState(user.firstName);
+    const [lastName, setLastName] = useState(user.lastName);
+    const [gender, setGender] = useState(user.gender);
+    const [salary, setSalary] = useState(user.salary);
+    const [role, setRole] = useState(user.role);
+    const [department, setDepartment] = useState(user.department);
+    const [email, setEmail] = useState(user.email);
+    const [phone, setPhone] = useState(user.phone);
+    const [password, setPassword] = useState(user.password);
+    const [DOB, setDOB] = useState(user.DOB);
+    const [DOJ, setDOJ] = useState(user.DOJ);
     return (
         <div>
-            <h2>Add Employee</h2>
+            <h2>Update Employee</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formFirstName">
                     <Form.Label>First Name</Form.Label>
@@ -160,4 +163,4 @@ function EmployeeForm() {
     )
 }
 
-export default EmployeeForm;
+export default UpdateEmployee;
