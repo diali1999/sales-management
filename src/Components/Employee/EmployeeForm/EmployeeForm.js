@@ -78,11 +78,15 @@ function EmployeeForm({user}) {
                 </Form.Group>
                 <Form.Group controlId="formGender">
                     <Form.Label>Gender</Form.Label>
-                    <Form.Control type="text" placeholder="Enter M or F or T" 
+                    <Form.Control as = "select" 
                     value={gender}
-                    onChange = {e => setGender(e.target.value)}    
-                    
-                    />
+                    onChange = {e => setGender(e.target.value)}     
+                    >
+                    <option hidden selected value > -- select an option -- </option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="T">None of the above</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formSalary">
                     <Form.Label>Salary</Form.Label>
@@ -149,6 +153,7 @@ function EmployeeForm({user}) {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <br/>
             </Form>
         </div>
         

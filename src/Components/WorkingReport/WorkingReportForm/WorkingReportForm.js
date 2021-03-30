@@ -74,7 +74,7 @@ function WorkingReportForm() {
                     onChange = {e => setRemarks(e.target.value)}      
                     />
                 </Form.Group>
-                <Button onClick={getLocation}>Log Location</Button>
+                <Button onClick={getLocation}>Log Location</Button>{' '}
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>

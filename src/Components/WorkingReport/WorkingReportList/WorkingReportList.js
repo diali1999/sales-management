@@ -61,7 +61,7 @@ function WorkingReportList() {
                 return(
                     <tr key={`${workingReport.id}`}>
                         <td>{workingReport.id}</td>
-                        <td>{workingReport.user_id}</td>
+                        <td>{workingReport.userId}</td>
                         <td>{workingReport.destination}</td>
                         <td>{workingReport.remarks}</td>
                         <td>{workingReport.date}</td>

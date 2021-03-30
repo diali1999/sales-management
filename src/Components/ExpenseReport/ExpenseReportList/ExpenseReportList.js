@@ -62,7 +62,7 @@ function ExpenseReportList() {
                 return(
                     <tr key={`${expenseReport.id}`}>
                         <td>{expenseReport.id}</td>
-                        <td>{expenseReport.user_id}</td>
+                        <td>{expenseReport.userId}</td>
                         <td>{expenseReport.type}</td>
                         <td>{expenseReport.expense}</td>
                         <td>{expenseReport.date}</td>

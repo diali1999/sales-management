@@ -28,7 +28,7 @@ function QRUpload(){
                     onChange={e=>setImage(e.target.files[0])}
                     name="file"
                 >
-                </Form.File>
+                </Form.File><br/>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>

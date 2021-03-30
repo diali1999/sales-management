@@ -39,12 +39,15 @@ function ExpenseReportForm() {
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formType">
                     <Form.Label>Type</Form.Label>
-                    <Form.Control 
-                    type="text" 
-                    placeholder="Enter Food or Travel" 
+                    <Form.Control
+                    as ="select"
                     value={type}
                     onChange = {e => setType(e.target.value)}    
-                    />
+                    >
+                        <option hidden selected value>---select an option---</option>
+                        <option>Food</option>
+                        <option>Travel</option>
+                    </Form.Control> 
                 </Form.Group>
                 <Form.Group controlId="formExpense">
                     <Form.Label>Expense</Form.Label>
