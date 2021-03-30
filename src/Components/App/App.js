@@ -20,9 +20,9 @@ import useUser from './useUser';
 function App() {
   const {authToken , setAuthToken} = useToken();
   const {user, setUser} = useUser();
-  if(!authToken || authToken == 'undefined'){
+  if(!authToken || authToken === 'undefined'){
     return(
-      <Login setAuthToken={setAuthToken} />
+      <Login setAuthToken={setAuthToken} setUser={setUser} />
     )
   }
   return (
@@ -31,7 +31,7 @@ function App() {
       {/* <ExpenseReportForm /> */}
       {/* <OrderForm /> */}
       {/* <Dashboard setAuthToken={setAuthToken} setUser={setUser}/> */}
-      <Navbar setAuthToken={setAuthToken} setUser={setUser}/>
+      <Navbar setAuthToken={setAuthToken} setUser={setUser} user={user}/>
       {/* <OrderList/> */}
       {/* <EmployeeForm /> */}
       {/* <EmployeeList /> */}

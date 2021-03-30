@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {Table, Spinner, Button} from 'react-bootstrap';
-// import Cookies from 'js-cookie';
-
-
 
 function OrderList() {
     const [orders, setOrders] = useState([]);
@@ -30,6 +27,7 @@ function OrderList() {
         });
         console.log(statusChange);
         getOrder().then(data=>{
+            console.log(data);
             setOrders(data);
         });
     }
@@ -52,6 +50,7 @@ function OrderList() {
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Date</th>
+                <th>Customer</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -62,13 +61,14 @@ function OrderList() {
                     <tr key={`${order.id}`}>
                         <td>{order.id}</td>
                         <td>{order.userId}</td>
-                        <td>{order.product.map((item,i) =>{
+                        <td>{JSON.parse(order.product).map((item,i) =>{
                             return <li key={i}>{item.productName}</li>
                         })}</td>
-                        <td>{order.product.map((item,i) =>{
+                        <td>{JSON.parse(order.product).map((item,i) =>{
                             return <li key={i}>{item.quantity}</li>
                         })}</td>
                         <td>{order.date}</td>
+                        <td>{order.customer}</td>
                         <td>{order.status}</td>
                         <td id={`${order.id}`}><Button id={`${order.id}`} variant="danger" onClick={changeStatus}>Change Status</Button></td>
                     </tr>

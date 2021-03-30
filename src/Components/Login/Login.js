@@ -13,7 +13,7 @@ async function loginUser(credentials){
     .then(data => data.json())
 }
 
-function Login({setAuthToken}) {
+function Login({setAuthToken, setUser}) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -24,6 +24,7 @@ function Login({setAuthToken}) {
             password
         });
         setAuthToken({'token': `${authToken.token}`});
+        setUser({'user':`${authToken.user.role}`});
     }
 
     return (
@@ -45,7 +46,8 @@ function Login({setAuthToken}) {
 }
 
 Login.propTypes = {
-    setAuthToken: PropTypes.func.isRequired
+    setAuthToken: PropTypes.func.isRequired,
+    setUser: PropTypes.func.isRequired
 }
 
 export default Login

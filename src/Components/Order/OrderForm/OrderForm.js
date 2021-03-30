@@ -20,10 +20,12 @@ function OrderForm() {
         const OrderCreated = await createOrder({
             product,
             date,
+            customer
         });
         console.log(OrderCreated);
         setProduct([{productName: [], quantity: []}]);
         setDate("");
+        setCustomer("");
     }
 
     const handleInputChange = (index,e) => {
@@ -56,7 +58,7 @@ function OrderForm() {
         { productName: [], quantity: [] }
       ]);
     const [date, setDate] = useState("");
-
+    const [customer, setCustomer] = useState("");
     return (
         <div>
             <h2>Add Order</h2>
@@ -96,6 +98,13 @@ function OrderForm() {
                     <Form.Control type="date" placeholder="Enter Date" 
                     value={date}
                     onChange = {e => setDate(e.target.value)}    
+                />
+                </Form.Group>
+                <Form.Group controlId="formCustomer">
+                    <Form.Label>Customer Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Customer Name" 
+                    value={customer}
+                    onChange = {e => setCustomer(e.target.value)}    
                 />
                 </Form.Group>
                 <Button variant="primary" type="submit">

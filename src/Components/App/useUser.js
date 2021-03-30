@@ -4,13 +4,15 @@ function useUser() {
 
     function getUser(){
         const userString = sessionStorage.getItem('user');
-        const user = JSON.parse(userString);
-        return user?.username
+        const userToken = JSON.parse(userString);
+        return userToken?.user
     }
+
     const [user, setUser] = useState(getUser());
-    function saveUser(user){
-        sessionStorage.setItem('user',JSON.stringify(user));
-        setUser(user.username);
+
+    function saveUser(role){
+        sessionStorage.setItem('user',JSON.stringify(role));
+        setUser(role);
     }
     return {
         setUser: saveUser,

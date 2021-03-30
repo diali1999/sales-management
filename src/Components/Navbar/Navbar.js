@@ -3,7 +3,7 @@ import { AnyButton } from "../AnyButton";
 import { MenuItems } from "./MenuItems"
 import './Navbar.css'
 
-function Navbar({setAuthToken, setUser}) {
+function Navbar({setAuthToken, setUser, user}) {
      const state = { clicked: false }
 
     const logout = () => {
@@ -23,7 +23,9 @@ function Navbar({setAuthToken, setUser}) {
                             <li key={index} className={item.cName}>
                                 {item.title}
                                 <div class="dropdown-content" >
-                                <a href ={item.Formurl}>Form</a>
+                                {JSON.parse(sessionStorage.getItem('user'))?.user==item.user &&
+                                    <a href ={item.Formurl}>Form</a>
+                                }
                                 <a href ={item.Listurl}>List</a>
                                 </div>
                             </li>
