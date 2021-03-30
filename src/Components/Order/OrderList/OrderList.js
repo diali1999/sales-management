@@ -61,12 +61,19 @@ function OrderList() {
                     <tr key={`${order.id}`}>
                         <td>{order.id}</td>
                         <td>{order.userId}</td>
-                        <td>{JSON.parse(order.product).map((item,i) =>{
+                        <td>{typeof(order.product) =="object" && order.product.map((item,i) =>{
+                            return <li key={i}>{item.productName}</li>})}
+                            {typeof(order.product) =="string" && JSON.parse(order.product).map((item,i) =>{
                             return <li key={i}>{item.productName}</li>
-                        })}</td>
-                        <td>{JSON.parse(order.product).map((item,i) =>{
+                        })} 
+                        </td>
+                        <td>
+                        {typeof(order.product) =="object" && order.product.map((item,i) =>{
+                        return <li key={i}>{item.quantity}</li>})}
+                        {typeof(order.product)=="string" && JSON.parse(order.product).map((item,i) =>{
                             return <li key={i}>{item.quantity}</li>
-                        })}</td>
+                        })}
+                        </td>
                         <td>{order.date}</td>
                         <td>{order.customer}</td>
                         <td>{order.status}</td>

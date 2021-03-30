@@ -32,14 +32,6 @@ function App() {
       {/* <OrderForm /> */}
       {/* <Dashboard setAuthToken={setAuthToken} setUser={setUser}/> */}
       <Navbar setAuthToken={setAuthToken} setUser={setUser} user={user}/>
-      {/* <OrderList/> */}
-      {/* <EmployeeForm /> */}
-      {/* <EmployeeList /> */}
-      {/* <ExpenseReportList /> */}
-      {/* <QRUpload /> */}
-      {/* <QRDisplay /> */}
-      {/* <WorkingReportForm /> */}
-      {/* <WorkingReportList /> */}
       <BrowserRouter>
         <Switch>
           <Route path="/home">

@@ -89,7 +89,7 @@ function OrderForm() {
                             </Col>
                         </Row>
                         </Form.Group>
-                        <Button onClick={() => handleAddFields(index)}>Add</Button>{' '}
+                        <Button onClick={() => handleAddFields()}>Add</Button>{' '}
                         <Button variant="primary" onClick={() => handleRemoveFields(index)}>Remove</Button>
                     </Fragment>
                 ))}
@@ -107,6 +107,9 @@ function OrderForm() {
                     onChange = {e => setCustomer(e.target.value)}    
                 />
                 </Form.Group>
+                <pre>
+                    {JSON.stringify(product, null, 2)}
+                </pre>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
