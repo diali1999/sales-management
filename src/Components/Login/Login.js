@@ -24,7 +24,7 @@ function Login({setAuthToken, setUser}) {
             password
         });
         setAuthToken({'token': `${authToken.token}`});
-        setUser({'user':`${authToken.user.role}`});
+        setUser({'user':`${authToken.user?.role}`});
     }
 
     return (
