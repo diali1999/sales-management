@@ -107,9 +107,6 @@ function OrderForm() {
                     onChange = {e => setCustomer(e.target.value)}    
                 />
                 </Form.Group>
-                <pre>
-                    {JSON.stringify(product, null, 2)}
-                </pre>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
