@@ -98,10 +98,15 @@ function EmployeeForm() {
                 </Form.Group>
                 <Form.Group controlId="formRole">
                     <Form.Label>Role</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Role" 
+                    <Form.Control 
+                    as ="select"
                     value={role}
                     onChange = {e => setRole(e.target.value)}    
-                    />
+                    >
+                        <option hidden selected value > -- select an option -- </option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="formDepartment">
                     <Form.Label>Department</Form.Label>
