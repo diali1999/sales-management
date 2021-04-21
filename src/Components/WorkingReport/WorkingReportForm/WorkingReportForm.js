@@ -46,7 +46,7 @@ function WorkingReportForm() {
     const [longitude, setLongitude] = useState();
     const [latitude, setLatitude] = useState();
     const [remarks, setRemarks] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date());
     return (
         <div>
             <h2>Add Working Report</h2>
@@ -60,13 +60,13 @@ function WorkingReportForm() {
                     onChange = {e => setDestination(e.target.value)}    
                     />
                 </Form.Group>   
-                <Form.Group controlId="formDate">
+                {/* <Form.Group controlId="formDate">
                     <Form.Label>Date</Form.Label>
                     <Form.Control type="date" 
                     value={date}
                     onChange = {e => setDate(e.target.value)}    
                     />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group controlId="formRemarks">
                     <Form.Label>Remarks</Form.Label>
                     <Form.Control type="textarea" 
